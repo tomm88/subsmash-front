@@ -1,0 +1,105 @@
+/* Main container for the layout builder */
+.layout-builder-container {
+    position: relative;
+    width: 800px;
+    height: 600px;
+    min-width: 800px;
+    min-height: 600px;
+    background-color: #2a2a2a; /* Dark background to match your theme */
+    border: 2px solid #444; /* Border to make it stand out */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
+    overflow: hidden;
+  }
+  
+  /* Each Rnd (react-rnd) component should have a border for visibility when dragging/resizing */
+  .rnd-element {
+    position: absolute; /* Positioning is handled by react-rnd */
+    border: none;
+  }
+  
+  /* Image elements within the Rnd component */
+  .rnd-element img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover; /* Ensure the image scales nicely within the container */
+  }
+  
+  /* Text elements styling */
+  .rnd-element-text-container {
+    padding: 5px;
+    color: #000000;
+    font-family: 'Roboto', sans-serif; /* Default font */
+    font-size: 16px;
+    text-align: center;
+    outline: none;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .rnd-element-text {
+    display: flex;
+    width: 100%;
+    cursor: text;
+    outline: none;
+  }
+  
+  .rnd-element-resizable {
+    position: relative;
+  }
+  
+  /* Selected element state - For highlighting the active/selected element */
+  .rnd-element.selected {
+    outline: 2px solid #00aaff; /* Highlight the selected element with a blue border */
+  }
+  
+
+  .handle {
+    width: 10px !important;
+    height: 10px !important;
+    background: #fff;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    position: absolute;
+    box-shadow: 0 0 5px 1px rgb(57 76 96 / 15%), 0 0 0 1px rgb(53 71 90 / 20%);
+  }
+  
+  .long-handle {
+    height: 15px !important;
+    width: 5px !important;
+  }
+  
+  .long-handle-horizontal {
+    height: 5px !important;
+    width: 15px !important;
+  }
+  
+  .right-handle.bottom-handle {
+    transform: translate(-4px, -4px);
+  }
+  
+  .right-handle.top-handle {
+    transform: translate(-4px, 4px);
+  }
+  
+  .left-handle.bottom-handle {
+    transform: translate(4px, -4px);
+  }
+  
+  .left-handle.top-handle {
+    transform: translate(4px, 4px);
+  }
+  
+  .long-handle-horizontal.bottom-handle,
+  .long-handle-horizontal.top-handle {
+    left: 50% !important;
+    transform: translateX(-8px);
+    cursor: ns-resize !important;
+  }
+  
+  .long-handle.left-handle,
+  .long-handle.right-handle {
+    top: 50% !important;
+    transform: translateY(-8px);
+    cursor: ew-resize !important;
+  }
+  

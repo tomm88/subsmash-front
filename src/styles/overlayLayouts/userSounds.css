@@ -1,0 +1,42 @@
+.user-sounds-container {
+    background-color: #1e1e1e;
+    border: 1px solid #444; /* Dark grey border */
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 300px;
+}
+
+.upload-sounds-header {
+    background-color: #0056b3;
+    width: 100%;
+    padding: 10px 20px 10px 20px;
+    margin-bottom: 40px;
+    cursor: pointer;
+}
+
+.upload-sounds-with-drag {
+    background-color: #7e7e7e;
+}
+
+.user-sounds-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.user-sounds-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px 10px 10px 0px;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333; /* Darker grey line between items */
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.input-radio {
+    margin: 10px;
+}

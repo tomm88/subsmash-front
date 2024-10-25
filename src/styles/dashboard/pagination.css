@@ -1,0 +1,39 @@
+.pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+  }
+  
+  .pagination {
+    list-style: none;
+    display: flex;
+    gap: 5px;
+  }
+  
+  .pagination li {
+    margin: 0 5px;
+  }
+  
+  .pagination button {
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  
+  .subs-per-page-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .subs-per-page-container label {
+    margin: 5px;
+  }
+
+  .subs-per-page-container select {
+    margin-left: 5px;
+  }
+
+  
+  

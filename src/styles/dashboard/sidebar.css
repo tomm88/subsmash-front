@@ -1,0 +1,42 @@
+.sidebar {
+    background-color: #1e1e1e;
+    color: #fff;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh - 1px;
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-list, .sidebar-footer {
+    list-style-type: none;
+    align-items: flex-start;
+    padding-left: 15px;
+}
+
+.sidebar-item a {
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    margin: 1rem 0;
+    cursor: pointer;
+    padding: 0.5rem 0;
+    font-size: 1.1rem;
+    transition: color 0.2s ease-in-out;
+}
+
+.sidebar-item a:hover {
+    color: #c2c2c2;
+}
+
+.sidebar-footer {
+    margin-top: auto;
+}
+
+.sidebar-icon {
+    margin-right: 10px; /* Space between icon and text */
+    width: 20px; /* Set your desired icon size */
+    height: 20px;
+}

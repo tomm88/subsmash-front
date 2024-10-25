@@ -1,0 +1,74 @@
+.layout-header {
+    display: flex;
+    justify-content: space-between;
+    min-width: 1150px;
+    max-width: 1150px;
+    height: 15px;
+}
+
+.view-options-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.view-options {
+    background-color: #1e1e1e;
+    border: 1px solid #444; /* Dark grey border */
+    padding: 5px 20px 5px 20px;
+    border-radius: 5px;
+    max-width: 300px;
+}
+
+.layout-name-and-edit-button {
+    display: flex;
+    align-self: end;
+    height: fit-content;
+    gap: 10px;
+}
+
+.background-color-selector-container {
+    max-width: 150px;
+    height: fit-content;
+    display: flex;
+    align-self: flex-end;
+    font-size: small;
+}
+
+.background-color-selector-container label {
+    margin-bottom: 0;
+}
+
+.create-and-save-buttons {
+    display: flex;
+    height: fit-content;
+    gap: 10px
+}
+
+.delete-layout-button {
+    background-color: red;
+    padding: 10px;
+    font-size: large;
+}
+
+.delete-layout-button:hover {
+    background-color: rgb(172, 0, 0);
+}
+
+.save-button:disabled {
+    background-color: rgb(102, 102, 102);
+}
+
+.save-button.save-success {
+    background-color: #28a745;
+    animation: fadeOut 2s forwards;
+}
+
+@keyframes fadeOut {
+    0% {
+        background-color: #28a745;  /* Start with success color */
+    }
+    100% {
+        background-color: #6a5acd;  /* Fade back to the original color */
+    }
+}

@@ -1,0 +1,26 @@
+.dashboard-layout {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    height: 100vh;
+}
+
+.heading-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 1em 0;
+}
+
+
+.dashboard-content {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    height: calc(100vh - 92px);
+}
+
+.main-content {
+    padding: 2rem;
+    background-color: #121212;
+    color: #fff;
+    overflow-y: auto;
+}

@@ -1,0 +1,44 @@
+.layout-builder-components-container {
+    display: flex;
+    gap: 10px;
+    height: fit-content;
+}
+
+.builder-and-delete-button-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.right-panels-container {
+    display: flex;
+    gap: 10px;
+}
+
+.image-sounds-settings-panels-container {
+ display: flex;
+ flex-direction: column;
+ gap: 10px;
+}
+
+.delete-and-preview-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.preview-button {
+    display: flex;
+    align-items: center;
+    text-decoration: underline;
+}
+
+.open-new-tab-icon {
+    padding-left: 5px;
+    width: 18px;
+}
+
+.heading-and-url-box-container {
+    display: flex;
+    width: calc(100vw - 300px);
+    min-width: 1100px;
+    justify-content: space-between;
+}

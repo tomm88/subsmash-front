@@ -1,0 +1,76 @@
+.home-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-between;
+}
+
+.hero {
+    background-color: #121212;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    height: 30vh;
+    color: white; /* Text color to contrast with the background */
+}
+
+.image-carousel-container {
+    background-color: black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: stretch;
+    padding: 20px;
+}
+
+.image-container {
+    position: relative;
+    min-width: 512px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.carousel-image {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.carousel-image.visible {
+    opacity: 1;
+}
+
+.carousel-image.hidden {
+    opacity: 0;
+}
+
+.homepage-footer {
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    background-color: #121212;
+    color: white;
+}
+
+.homepage-login-button {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    font-size: large;
+    font-weight: 700;
+    height: fit-content;
+    width: fit-content;
+    gap: 8px;
+}
+
+.login-button-twitch-logo {
+    max-width: 30px;
+    max-height: 30px;
+}

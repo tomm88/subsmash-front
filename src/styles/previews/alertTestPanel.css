@@ -1,0 +1,26 @@
+.alerts-test-panel-container {
+    background-color: #1e1e1e;
+    border: 1px solid #444; /* Dark grey border */
+    padding: 15px 20px 5px 20px;
+    border-radius: 5px;
+    width: fit-content;
+    min-width: 200px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.dropdown-and-test-button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.test-alert-inputs-container input {
+    margin-left: 10px;
+}
+
+.test-alert-input-with-label {
+    display: flex;
+    justify-content: space-between;
+}

@@ -1,0 +1,49 @@
+.slideshow-container {
+    position: relative;
+    width: 800px;
+    height: 600px;
+    min-width: 800px;
+    min-height: 600px;
+  }
+
+.slideshow-element {
+    position: absolute;
+    border: none;
+}
+
+.slideshow-element img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover; /* Ensure the image scales nicely within the container */
+  }
+
+  .rnd-element {
+    position: absolute; /* Positioning is handled by react-rnd */
+    border: none;
+  }
+  
+  /* Image elements within the Rnd component */
+  .rnd-element img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover; /* Ensure the image scales nicely within the container */
+  }
+  
+  /* Text elements styling */
+  .rnd-element-text-container {
+    padding: 5px;
+    color: #000000;
+    font-family: 'Roboto', sans-serif; /* Default font */
+    font-size: 16px;
+    text-align: center;
+    outline: none;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .rnd-element-text {
+    display: flex;
+    width: 100%;
+    cursor: text;
+    outline: none;
+  }

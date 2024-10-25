@@ -1,0 +1,133 @@
+/* Container for the uploaded images list */
+.user-images-container {
+    background-color: #1e1e1e;
+    border: 1px solid #444; /* Dark grey border */
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 300px;
+}
+
+/* Title of the section */
+.title {
+    text-align: center;
+    margin-bottom: 15px;
+    font-family: Arial, sans-serif;
+    color: #ddd; /* Light grey for title text */
+}
+
+/* List styling */
+.user-images-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+/* Individual list items */
+.user-images-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333; /* Darker grey line between items */
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+/* Styling for thumbnail */
+.thumbnail {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    margin-right: 15px;
+    border-radius: 3px;
+    border: 1px solid #444; /* Border for thumbnail in dark theme */
+}
+
+/* Image title styling */
+.image-title {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #ccc; /* Light grey for text */
+}
+
+/* Hover effect */
+.user-images-item:hover {
+    background-color: #333; /* Slightly lighter background on hover */
+}
+
+/* Selected state styling */
+.user-images-item.selected {
+    background-color: #007bff; /* Bright blue for selected item */
+    border-color: #0056b3; /* Darker blue border for selected state */
+}
+
+/* Scrollbar styling */
+.user-images-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.user-images-list::-webkit-scrollbar-thumb {
+    background-color: #444; /* Dark grey scrollbar thumb */
+    border-radius: 10px;
+}
+
+.user-images-list::-webkit-scrollbar-track {
+    background-color: #2c2c2c; /* Darker track */
+}
+
+/* Action buttons container */
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+/* Styling for buttons */
+.action-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+    margin: 0 5px 0 5px;
+}
+
+.add-btn {
+    background-color: #28a745; /* Green for "Add to Layout" */
+    color: white;
+}
+
+.add-btn:hover {
+    background-color: #218838;
+}
+
+.delete-btn {
+    background-color: #dc3545; /* Red for "Delete" */
+    color: white;
+}
+
+.delete-btn:enabled:hover {
+    background-color: #c82333;
+}
+
+.toggle-hide {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.upload-images-header {
+    background-color: #0056b3;
+    width: 100%;
+    padding: 10px 20px 10px 20px;
+    margin-bottom: 40px;
+    cursor: pointer;
+}
+
+.upload-header-with-drag {
+    background-color: #7e7e7e;
+}

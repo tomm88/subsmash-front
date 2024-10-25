@@ -1,0 +1,10 @@
+.url-container {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.url-container input {
+    margin: 5px;
+}
+

@@ -1,0 +1,97 @@
+/* SubsTable.css */
+
+/* Basic table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Styling the table headers */
+th {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+/* Styling the table rows */
+td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+/* Alternating row colors */
+tbody tr:nth-child(even) {
+    background-color: #222222;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #353535;
+}
+
+/* Minimum width for the Tier column */
+th:nth-child(2), 
+td:nth-child(2) {
+    min-width: 100px;
+    text-align: center;
+}
+
+/* Minimum width for Character Name and Prompt */
+th:nth-child(3), 
+td:nth-child(3),
+th:nth-child(4), 
+td:nth-child(4) {
+    min-width: 200px;
+}
+
+/* Center align the buttons */
+button {
+    padding: 5px 10px;
+    background-color: #6a5acd;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #483d8b;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: auto;
+}
+
+/* Checkbox styling */
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.table-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-bar input{
+    width: 250px;
+}
+
+.sort-link {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    cursor: pointer;
+}
+
+.view-image-column {
+    min-width: 110px;
+}
