@@ -4,7 +4,7 @@ import '../../styles/dashboard/urlBox.css'
 
 export const CopyUrlBox = () => {
   const { slideshowUrl, alertsUrl } = useStreamerHashes();
-  const [copiedUrl, setCopiedUrl] = useState(null)
+  const [copiedUrl, setCopiedUrl] = useState(null);
   
   const copyUrl = (url, type) => {
     navigator.clipboard.writeText(url).then(() => {
