@@ -5,6 +5,7 @@ const LoginButton = () => {
 
   const apiUrl = process.env.REACT_APP_API_URL;
   const handleLogin = () => {
+    console.log(apiUrl)
     window.location.href = `${apiUrl}/auth/twitchUriRedirect`;
   }
 
