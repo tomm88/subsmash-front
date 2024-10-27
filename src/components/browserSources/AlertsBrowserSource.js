@@ -66,7 +66,7 @@ export const AlertsBrowserSource = () => {
                     try {
                         await axios.post(`${apiUrl}/twitch/eventSub/alerts`, { hash });
                     } catch (error) {
-                        console.error("Could not establish websocket connection for alerts", error)
+                        console.error("Could not establish websocket connection for alerts", error);
                     }
                 }
 
