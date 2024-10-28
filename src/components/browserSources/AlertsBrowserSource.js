@@ -79,9 +79,10 @@ export const AlertsBrowserSource = () => {
                 };
 
                 ws.onmessage = (message) => {
-                    console.log('in AlertsBrowserSource. Alert message received: ', message)
                     const { type, data } = JSON.parse(message.data);
+                    if(type !== 'heartbeat') {
                         setAlertQueue((prevQueue) => [...prevQueue, { type, data }]);
+                    } 
                 };
 
                 ws.onclose = () => {
