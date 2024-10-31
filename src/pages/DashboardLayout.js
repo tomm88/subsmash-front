@@ -26,7 +26,7 @@ export const DashboardLayout = () => {
                 setIsAuthenticated(true);
                 setLoading(false);
                 } else {
-                    alert("no access token found")
+                    alert("please log in")
                     window.location.href = '/';
                 }
             } catch(error) {
