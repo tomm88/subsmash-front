@@ -1,7 +1,8 @@
 .home-page {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: fit-content;
+    width: 100%;
     justify-content: space-between;
 }
 
@@ -18,21 +19,25 @@
 
 .image-carousel-container {
     background-color: black;
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(512px, 1fr)); 
+    justify-items: center;
     align-items: center;
-    height: stretch;
-    padding: 20px;
+    padding: 16px;
+    height: fit-content;
 }
+
 
 .image-container {
     position: relative;
-    min-width: 512px;
-    height: 100%;
+    width: 512px;
+    height: 512px;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    padding: 20px;
 }
 
 .carousel-image {
@@ -41,6 +46,26 @@
     height: auto;
     opacity: 0;
     transition: opacity 1s ease-in-out;
+}
+
+@media (max-width: 568px) {
+    .image-carousel-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .image-container {
+        width: 90vw; /* Scale down to 90% of screen width */
+        height: 90vw; /* Adjust height proportionally */
+        max-width: 512px;
+        overflow: hidden;
+        padding: 0;
+    }
+
+    .carousel-image {
+        width: 100%; /* Scale image to fit the container */
+        height: auto; /* Keep aspect ratio */
+    }
 }
 
 .carousel-image.visible {

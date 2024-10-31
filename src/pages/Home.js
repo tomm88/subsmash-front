@@ -40,7 +40,6 @@ const Home = () => {
         return () => clearInterval(imageChangeInterval)
     }, [natureImages.length])
 
-
     return (
         <div className='home-page'>
             <div className='hero'>
