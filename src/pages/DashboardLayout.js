@@ -22,7 +22,6 @@ export const DashboardLayout = () => {
         const checkSession = async () => {
             try {
                 const authenticated = await checkAuth();
-                console.log('does this happen?')
                 setLoading(false);
                 if (authenticated){
                 setIsAuthenticated(true);

@@ -38,7 +38,10 @@ export const AlertsBrowserSource = () => {
         const alertConditionMap = {
             'new_subscriber': 'isNewSubscriberAlert',
             'resub': 'isResubscribeAlert',
-            'gift_sub': 'isGiftSubAlert'
+            'gift_sub': 'isGiftSubAlert',
+            'follower': 'isFollowerAlert',
+            'cheer': 'isCheerAlert',
+            'raid': 'isRaidAlert'
         };
 
         const alertCondition = alertConditionMap[alert.type];

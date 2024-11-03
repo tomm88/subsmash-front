@@ -24,6 +24,12 @@ export const AlertTestPanel = () => {
     const [monthsResubbed, setMonthsResubbed] = useState(1);
     const [resubMessage, setResubMessage] = useState('');
     const [tier, setTier] = useState(1);
+    const [followerTwitchUsername, setFollowerTwitchUsername] = useState('');
+    const [cheererTwitchUsername, setCheererTwitchUsername] = useState('');
+    const [cheerMessage, setCheerMessage] = useState('');
+    const [cheerAmount, setCheerAmount] = useState(1);
+    const [raiderTwitchUsername, setRaiderTwitchUsername] = useState('');
+    const [raidAmount, setRaidAmount] = useState(1);
 
     const handleSetTier = (userTier) => {
         let controlledTier = userTier;
@@ -49,6 +55,22 @@ export const AlertTestPanel = () => {
         setNumberSubsGifted(controlledAmount);
     }
 
+    const handleSetCheerAmount = (userAmount) => {
+        let controlledAmount = userAmount;
+        if (userAmount > 10000) {
+            controlledAmount = 10000
+        }
+        setCheerAmount(controlledAmount);
+    }
+
+    const handleSetRaidAmount = (userAmount) => {
+        let controlledAmount = userAmount;
+        if (userAmount > 10000) {
+            controlledAmount = 10000
+        }
+        setRaidAmount(controlledAmount);
+    }
+
     const handleClickTestButton = async () => {
         const testSub = {
             type: alertTypeToTest,
@@ -59,7 +81,13 @@ export const AlertTestPanel = () => {
             resubMessage,
             tier,
             alertDuration,
-            alertSoundUrl
+            alertSoundUrl,
+            followerTwitchUsername,
+            cheererTwitchUsername,
+            cheerMessage,
+            bits: cheerAmount,
+            raiderTwitchUsername,
+            viewers: raidAmount
         }
         setSubscriberForTestAlert(testSub);
 
@@ -95,6 +123,15 @@ export const AlertTestPanel = () => {
                 </option>
                 <option key={'gift_sub'} value={'gift_sub'}>
                     Gift Subscriptions
+                </option>
+                <option key={'follower'} value={'follower'}>
+                    Followers
+                </option>
+                <option key={'cheer'} value={'cheer'}>
+                    Cheers
+                </option>
+                <option key={'raid'} value={'raid'}>
+                    Raids
                 </option>
             </select> 
             <button disabled={alertPreviewIsShowing} onClick={handleClickTestButton}>Test</button>
@@ -177,6 +214,72 @@ export const AlertTestPanel = () => {
                         max="100" 
                         />
                     </label>    
+                    </>
+                }
+                {alertTypeToTest === 'follower' && 
+                    <>
+                    <label className='test-alert-input-with-label'>
+                    Follower Username:
+                        <input 
+                        id='follower-name-input' 
+                        value={followerTwitchUsername}
+                        onChange={(e) => setFollowerTwitchUsername(e.target.value)}
+                        />
+                    </label> 
+                    </>
+                }
+                {alertTypeToTest === 'cheer' && 
+                    <>
+                    <label className='test-alert-input-with-label'>
+                    Cheerer Username:
+                        <input 
+                        id='cheerer-name-input' 
+                        value={cheererTwitchUsername}
+                        onChange={(e) => setCheererTwitchUsername(e.target.value)}
+                        />
+                    </label>
+                    <label className='test-alert-input-with-label'>
+                    Message:
+                        <textarea 
+                        id='cheer-message-input' 
+                        value={cheerMessage}
+                        onChange={(e) => setCheerMessage(e.target.value)}
+                        />
+                    </label>
+                    <label className='test-alert-input-with-label'>
+                    Amount Cheered:
+                    <input 
+                        id='cheer-amount-input' 
+                        type='number'
+                        value={cheerAmount}
+                        onChange={(e) => handleSetCheerAmount(parseInt(e.target.value))}
+                        min="1" 
+                        max="10000" 
+                        />
+                    </label>    
+                    </>
+                }
+                {alertTypeToTest === 'raid' && 
+                    <>
+                    <label className='test-alert-input-with-label'>
+                    Raider Username:
+                        <input 
+                        id='raider-name-input' 
+                        value={raiderTwitchUsername}
+                        onChange={(e) => setRaiderTwitchUsername(e.target.value)}
+                        />
+                    </label>
+                    <label className='test-alert-input-with-label'>
+                    Viewers:
+                        <input 
+                        id='raid-viewers-input' 
+                        type='number'
+                        value={raidAmount}
+                        onChange={(e) => handleSetRaidAmount(parseInt(e.target.value))}
+                        min="1" 
+                        max="10000" 
+                        />
+                    </label> 
                     </>
                 }
             </div>

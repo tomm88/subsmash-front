@@ -201,7 +201,16 @@ export const SlideshowBrowserSource = () => {
                 style={{ zIndex: element.zIndex }}
                 >
                 {element.type === 'image' && 
-                    <img src={element.url} alt={element.displayTitle} draggable='false' />
+                    <img 
+                    src={element.url} 
+                    alt={element.displayTitle} 
+                    draggable='false' 
+                    style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover'
+                      }}
+                    />
                 }
                 {element.type === 'text' && 
                 <div 

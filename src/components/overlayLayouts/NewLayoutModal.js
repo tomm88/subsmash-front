@@ -9,8 +9,14 @@ export const NewLayoutModal = ({ setCreatingNewLayout }) => {
     const [layoutType, setLayoutType] = useState('alerts');
     const [startOption, setStartOption] = useState('scratch');
     const [selectedExistingLayout, setSelectedExistingLayout] = useState();
+    const [isNewSubscriberAlert, setIsNewSubscriberAlert] = useState(true);
+    const [isResubscribeAlert, setIsResubscribeAlert] = useState(true);
+    const [isGiftSubAlert, setIsGiftSubAlert] = useState(true);
+    const [isFollowerAlert, setIsFollowerAlert] = useState(true);
+    const [isCheerAlert, setIsCheerAlert] = useState(true);
+    const [isRaidAlert, setIsRaidAlert] = useState(true);
 
-    const { layouts, handleSelectLayout, refreshLayouts, settings } = useContext(LayoutContext)
+    const { layouts, handleSelectLayout, refreshLayouts } = useContext(LayoutContext)
 
     const handleCreateLayout = async () => {
         if (!layoutName) {
@@ -24,9 +30,12 @@ export const NewLayoutModal = ({ setCreatingNewLayout }) => {
             layoutData.push({
                 type: 'config',
                 conditions: {
-                    isNewSubscriberAlert: settings.isNewSubscriberAlert,
-                    isResubscribeAlert: settings.isResubscribeAlert,
-                    isGiftSubAlert: settings.isGiftSubAlert
+                    isNewSubscriberAlert,
+                    isResubscribeAlert,
+                    isGiftSubAlert,
+                    isFollowerAlert,
+                    isCheerAlert,
+                    isRaidAlert
                 },
                 duration: 10,
                 soundUrl: ''
@@ -138,22 +147,40 @@ export const NewLayoutModal = ({ setCreatingNewLayout }) => {
                     <label>Use this layout for:</label>
                     <input 
                     type='checkbox' 
-                    checked={settings.isNewSubscriberAlert}
-                    onChange={() => settings.setIsNewSubscriberAlert(!settings.isNewSubscriberAlert)}
+                    checked={isNewSubscriberAlert}
+                    onChange={() => setIsNewSubscriberAlert(!isNewSubscriberAlert)}
                     />
-                        New Subscriber
+                        New Subscribers
                     <input 
                     type='checkbox' 
-                    checked={settings.isResubscribeAlert}
-                    onChange={() => settings.setisResubscribeAlert(!settings.isResubscribeAlert)}
+                    checked={isResubscribeAlert}
+                    onChange={() => setIsResubscribeAlert(!isResubscribeAlert)}
                     />
-                        Resubscription
+                        Resubscriptions
                     <input 
                     type='checkbox' 
-                    checked={settings.isGiftSubAlert}
-                    onChange={() => settings.setIsGiftSubAlert(!settings.isGiftSubAlert)}
+                    checked={isGiftSubAlert}
+                    onChange={() => setIsGiftSubAlert(!isGiftSubAlert)}
                     />
                         Gifted Subs
+                    <input 
+                    type='checkbox' 
+                    checked={isFollowerAlert}
+                    onChange={() => setIsFollowerAlert(!isFollowerAlert)}
+                    />
+                        New Followers
+                    <input 
+                    type='checkbox' 
+                    checked={isCheerAlert}
+                    onChange={() => setIsCheerAlert(!isCheerAlert)}
+                    />
+                        Cheers
+                    <input 
+                    type='checkbox' 
+                    checked={isRaidAlert}
+                    onChange={() => setIsRaidAlert(!isRaidAlert)}
+                    />
+                        Raids
                 </div>
             )}
 

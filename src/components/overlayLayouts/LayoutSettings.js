@@ -25,6 +25,12 @@ export const LayoutSettings = () => {
         setisResubscribeAlert,
         isGiftSubAlert,
         setIsGiftSubAlert,
+        isFollowerAlert,
+        setIsFollowerAlert,
+        isCheerAlert,
+        setIsCheerAlert,
+        isRaidAlert,
+        setIsRaidAlert,
         duration } = settings;
 
     const [isActive, setIsActive] = useState(false);
@@ -32,6 +38,9 @@ export const LayoutSettings = () => {
     const [activeLayoutsNewSub, setActiveLayoutsNewSub] = useState([]);
     const [activeLayoutsResub, setActiveLayoutsResub] = useState([]);
     const [activeLayoutsGiftSub, setActiveLayoutsGiftSub] = useState([]);
+    const [activeLayoutsFollower, setActiveLayoutsFollower] = useState([]);
+    const [activeLayoutsCheer, setActiveLayoutsCheer] = useState([]);
+    const [activeLayoutsRaid, setActiveLayoutsRaid] = useState([]);
     const [activeLayoutSlideshow, setActiveLayoutSlideshow] = useState('');
 
     useEffect(() => {
@@ -55,13 +64,19 @@ export const LayoutSettings = () => {
         let newSubs = [];
         let resubs = [];
         let giftSubs = [];
+        let followers = [];
+        let cheers = [];
+        let raids = [];
 
         activeAlertsLayouts.forEach(id => {
             const layout = layouts.find(l => l.id === id)
             const config = layout.layout_data.find(el => el.type === 'config');
-            if (config.conditions.isNewSubscriberAlert) newSubs.push(layout.layout_name)
-            if (config.conditions.isResubscribeAlert) resubs.push(layout.layout_name)
-            if (config.conditions.isGiftSubAlert) giftSubs.push(layout.layout_name)
+            if (config.conditions.isNewSubscriberAlert) newSubs.push(layout.layout_name);
+            if (config.conditions.isResubscribeAlert) resubs.push(layout.layout_name);
+            if (config.conditions.isGiftSubAlert) giftSubs.push(layout.layout_name);
+            if (config.conditions.isFollowerAlert) followers.push(layout.layout_name);
+            if (config.conditions.isCheerAlert) cheers.push(layout.layout_name);
+            if (config.conditions.isRaidAlert) raids.push(layout.layout_name);
         });
 
         const slideshowLayout = layouts.find(layout => layout.id === activeSlideshowLayout);
@@ -74,6 +89,9 @@ export const LayoutSettings = () => {
         setActiveLayoutsNewSub(newSubs);
         setActiveLayoutsResub(resubs);
         setActiveLayoutsGiftSub(giftSubs);
+        setActiveLayoutsFollower(followers);
+        setActiveLayoutsCheer(cheers);
+        setActiveLayoutsRaid(raids);
     }, [activeAlertsLayouts, layouts, activeSlideshowLayout]);
 
     useEffect(() => {
@@ -95,6 +113,9 @@ export const LayoutSettings = () => {
         if (isNewSubscriberAlert && disabledView !== 'new_subscriber') return 'new_subscriber'
         if (isResubscribeAlert && disabledView !== 'resub') return 'resub';
         if (isGiftSubAlert && disabledView !== 'gift_sub') return 'gift_sub';
+        if (isFollowerAlert && disabledView !== 'follower') return 'follower';
+        if (isCheerAlert && disabledView !== 'cheer') return 'cheer';
+        if (isRaidAlert && disabledView !== 'raid') return 'raid';
         return '';
     }
 
@@ -131,6 +152,42 @@ export const LayoutSettings = () => {
         }
         if (newVal && view === '') {
             setView('gift_sub')
+        }
+    }
+
+    const handleFollowerCheckBox = () => {
+        const newVal = !isFollowerAlert
+        setIsFollowerAlert(newVal);
+        handleConditionUpdate('isFollowerAlert', newVal);
+        if (!newVal && view === 'follower'){
+            setView(findActiveView('follower'));
+        }
+        if (newVal && view === '') {
+            setView('follower')
+        }
+    }
+
+    const handleCheerCheckBox = () => {
+        const newVal = !isCheerAlert
+        setIsCheerAlert(newVal);
+        handleConditionUpdate('isCheerAlert', newVal);
+        if (!newVal && view === 'cheer'){
+            setView(findActiveView('cheer'));
+        }
+        if (newVal && view === '') {
+            setView('cheer')
+        }
+    }
+
+    const handleRaidCheckBox = () => {
+        const newVal = !isRaidAlert
+        setIsRaidAlert(newVal);
+        handleConditionUpdate('isRaidAlert', newVal);
+        if (!newVal && view === 'raid'){
+            setView(findActiveView('raid'));
+        }
+        if (newVal && view === '') {
+            setView('raid')
         }
     }
 
@@ -195,6 +252,27 @@ export const LayoutSettings = () => {
                                 onChange={handleGiftSubCheckBox}
                                 /> Gift Subscriptions
                         </div>
+                        <div>
+                            <input 
+                                type='checkbox' 
+                                checked={isFollowerAlert}
+                                onChange={handleFollowerCheckBox}
+                                /> Followers
+                        </div>
+                        <div>
+                            <input 
+                                type='checkbox' 
+                                checked={isCheerAlert}
+                                onChange={handleCheerCheckBox}
+                                /> Cheers
+                        </div>
+                        <div>
+                            <input 
+                                type='checkbox' 
+                                checked={isRaidAlert}
+                                onChange={handleRaidCheckBox}
+                                /> Raids
+                        </div>
                     </div>
                     </>}
                     </>
@@ -227,6 +305,27 @@ export const LayoutSettings = () => {
                         {activeLayoutsGiftSub.length > 0 ? activeLayoutsGiftSub.map(title => (<li key={title}>{title}</li>))
                         : 
                         <li>None - No alerts will show for gift subs.</li>
+                        }
+                    </ul>
+                    <h4>Followers</h4>
+                    <ul>
+                        {activeLayoutsFollower.length > 0 ? activeLayoutsFollower.map(title => (<li key={title}>{title}</li>))
+                        : 
+                        <li>None - No alerts will show for new followers.</li>
+                        }
+                    </ul>
+                    <h4>Cheers</h4>
+                    <ul>
+                        {activeLayoutsCheer.length > 0 ? activeLayoutsCheer.map(title => (<li key={title}>{title}</li>))
+                        : 
+                        <li>None - No alerts will show for cheers.</li>
+                        }
+                    </ul>
+                    <h4>Raids</h4>
+                    <ul>
+                        {activeLayoutsRaid.length > 0 ? activeLayoutsRaid.map(title => (<li key={title}>{title}</li>))
+                        : 
+                        <li>None - No alerts will show for raids.</li>
                         }
                     </ul>
                     <span>If multiple layouts are active for one alert type, SubSmash will choose a layout at random for that alert type.</span>

@@ -108,7 +108,10 @@ export const Layers = () => {
             conditions: {
                 isForNewSubscriber: true,
                 isForResubscription: true,
-                isForGiftSub: true
+                isForGiftSub: true,
+                isForFollower: true,
+                isForCheer: true,
+                isForRaid: true
             }
         }
 

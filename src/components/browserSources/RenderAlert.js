@@ -24,13 +24,19 @@ export const RenderAlert = ({ currentAlert, layoutElements, alertSoundUrl }) => 
 
     const currentSubData = useMemo(() => {
         return {
-            subscriber: currentAlert?.data.subscriberTwitchUsername,
-            character: currentAlert?.data.characterName,
-            gifter: currentAlert?.data.gifterTwitchUsername,
-            amount: currentAlert?.data.numberOfGifts,
-            months: currentAlert?.data.cumulativeMonths,
-            tier: currentAlert?.data.tier,
-            message: currentAlert?.data.message
+            subscriber: currentAlert?.data.subscriberTwitchUsername || '',
+            character: currentAlert?.data.characterName || '',
+            gifter: currentAlert?.data.gifterTwitchUsername || '',
+            giftAmount: currentAlert?.data.numberOfGifts || '',
+            months: currentAlert?.data.cumulativeMonths || '',
+            tier: currentAlert?.data.tier || '',
+            resubMessage: currentAlert?.data.resubMessage || '',
+            follower: currentAlert?.data.followerTwitchUsername || '',
+            cheerer: currentAlert?.data.cheererTwitchUsername || '',
+            cheerMessage: currentAlert?.data.cheerMessage || '',
+            cheerAmount: currentAlert?.data.bits || '',
+            raider: currentAlert?.data.raiderTwitchUsername || '',
+            raidAmount: currentAlert?.data.viewers || ''
         }
     }, [currentAlert]);
 
@@ -47,33 +53,30 @@ export const RenderAlert = ({ currentAlert, layoutElements, alertSoundUrl }) => 
             'new_subscriber': 'isForNewSubscriber',
             'resub': 'isForResubscription',
             'gift_sub': 'isForGiftSub',
+            'follower': 'isForFollower',
+            'cheer': 'isForCheer',
+            'raid': 'isForRaid'
         };
     
         const alertCondition = alertConditionMap[currentAlert.type]; // Get the condition for the current alert
     
-        return layoutElements.map(el => {
-            // For text elements, check the corresponding condition dynamically
+        return layoutElements.filter(el => {
+            if (alertCondition && !el.conditions[alertCondition]) {
+                return false;
+            }
+            return true;
+        })
+        .map(el => {
+            // For text elements, replace user variables with actual data from event
             if (el.type === 'text') {
-                if (alertCondition && !el.conditions[alertCondition]) {
-                    return {
-                        ...el,
-                        content: '' // Hide element if condition is false
-                    };
-                }
                 return {
                     ...el,
                     content: replaceTextPlaceholders(el.content, currentSubData)
                 };
             }
     
-            // For image elements, check the corresponding condition dynamically
+            // For image elements, check if it's the placeholder image and replace it with actual user image if so
             if (el.type === 'image') {
-                if (alertCondition && !el.conditions[alertCondition]) {
-                    return {
-                        ...el,
-                        url: '' // Hide image if condition is false
-                    };
-                }
                 if (el.id === 'layout_placeholder___62efa17d') {
                     return {
                         ...el,
@@ -111,7 +114,16 @@ export const RenderAlert = ({ currentAlert, layoutElements, alertSoundUrl }) => 
                 style={{ zIndex: element.zIndex }}
                 >
                 {element.type === 'image' && 
-                    <img src={element.url} alt={element.displayTitle} draggable='false' />
+                    <img 
+                    src={element.url} 
+                    alt={element.displayTitle} 
+                    draggable='false' 
+                    style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover'
+                      }}
+                    />
                 }
                 {element.type === 'text' && 
                 <div 

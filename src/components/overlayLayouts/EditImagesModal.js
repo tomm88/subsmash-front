@@ -8,6 +8,9 @@ export const EditImagesModal = ({ layer, onClose }) => {
     const [isForNewSubscriber, setIsForNewSubscriber] = useState(layer.conditions.isForNewSubscriber || false);
     const [isForResubscription, setIsForResubscription] = useState(layer.conditions.isForResubscription || false);
     const [isForGiftSub, setIsForGiftSub] = useState(layer.conditions.isForGiftSub || false);
+    const [isForFollower, setIsForFollower] = useState(layer.conditions.isForFollower || false);
+    const [isForCheer, setIsForCheer] = useState(layer.conditions.isForCheer || false);
+    const [isForRaid, setIsForRaid] = useState(layer.conditions.isForRaid || false);
 
     const handleSaveImage = () => {
         const newElement = {
@@ -16,7 +19,10 @@ export const EditImagesModal = ({ layer, onClose }) => {
             conditions: {
                 isForNewSubscriber,
                 isForResubscription,
-                isForGiftSub
+                isForGiftSub,
+                isForFollower,
+                isForCheer,
+                isForRaid
             }
         }
 
@@ -74,6 +80,36 @@ export const EditImagesModal = ({ layer, onClose }) => {
                                 checked={isForGiftSub}                         
                                 onChange={() => setIsForGiftSub(!isForGiftSub)} 
                             /> Gift Subscriptions
+                            <br />
+                        </>
+                    }   
+                    {settings.isFollowerAlert && 
+                        <>
+                            <input 
+                                type='checkbox' 
+                                checked={isForFollower}                         
+                                onChange={() => setIsForFollower(!isForFollower)} 
+                            /> New Followers
+                            <br />
+                        </>
+                    }   
+                    {settings.isCheerAlert && 
+                        <>
+                            <input 
+                                type='checkbox' 
+                                checked={isForCheer}                         
+                                onChange={() => setIsForCheer(!isForCheer)} 
+                            /> Cheers
+                            <br />
+                        </>
+                    }   
+                    {settings.isRaidAlert && 
+                        <>
+                            <input 
+                                type='checkbox' 
+                                checked={isForRaid}                         
+                                onChange={() => setIsForRaid(!isForRaid)} 
+                            /> Raids
                             <br />
                         </>
                     }   

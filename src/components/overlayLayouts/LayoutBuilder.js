@@ -39,6 +39,12 @@ export const LayoutBuilder = () => {
           return el.conditions?.isForResubscription;
         } else if (view === 'gift_sub') {
           return el.conditions?.isForGiftSub;
+        } else if (view === 'follower') {
+          return el.conditions?.isForFollower;
+        } else if (view === 'cheer') {
+          return el.conditions?.isForCheer;
+        } else if (view === 'raid') {
+          return el.conditions?.isForRaid;
         }
         return false
       }

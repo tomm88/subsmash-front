@@ -21,6 +21,9 @@ export const LayoutProvider = ({ children }) => {
     const [isNewSubscriberAlert, setIsNewSubscriberAlert] = useState(false);
     const [isResubscribeAlert, setisResubscribeAlert] = useState(false);
     const [isGiftSubAlert, setIsGiftSubAlert] = useState(false);
+    const [isFollowerAlert, setIsFollowerAlert] = useState(false);
+    const [isCheerAlert, setIsCheerAlert] = useState(false);
+    const [isRaidAlert, setIsRaidAlert] = useState(false);
     const [savingLayout, setSavingLayout] = useState(false);
     const [activeSlideshowLayout, setActiveSlideshowLayout] = useState(null);
     const [activeAlertsLayouts, setActiveAlertsLayouts] = useState([]);
@@ -85,10 +88,13 @@ export const LayoutProvider = ({ children }) => {
         const element = layoutElements.find((el) => el.type === 'config')
         if (element)  {
         if (selectedLayout.layout_type === 'alerts'){
-            setIsNewSubscriberAlert(element.conditions.isNewSubscriberAlert);
-            setisResubscribeAlert(element.conditions.isResubscribeAlert);
-            setIsGiftSubAlert(element.conditions.isGiftSubAlert);
-            setSelectedSound(element.soundUrl || null)
+            setIsNewSubscriberAlert(element.conditions.isNewSubscriberAlert || false);
+            setisResubscribeAlert(element.conditions.isResubscribeAlert || false);
+            setIsGiftSubAlert(element.conditions.isGiftSubAlert || false);
+            setSelectedSound(element.soundUrl || null);
+            setIsFollowerAlert(element.conditions.isFollowerAlert || false);
+            setIsCheerAlert(element.conditions.isCheerAlert || false);
+            setIsRaidAlert(element.conditions.isRaidAlert || false);
           }
           setDuration(element.duration)
         }
@@ -165,6 +171,12 @@ export const LayoutProvider = ({ children }) => {
       setisResubscribeAlert,
       isGiftSubAlert,
       setIsGiftSubAlert,
+      isFollowerAlert,
+      setIsFollowerAlert,
+      isCheerAlert,
+      setIsCheerAlert,
+      isRaidAlert,
+      setIsRaidAlert,
       duration
     }
 

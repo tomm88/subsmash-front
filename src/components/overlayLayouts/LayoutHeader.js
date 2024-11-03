@@ -33,6 +33,15 @@ export const LayoutHeader = () => {
               {settings.isGiftSubAlert && 
               <option key='gift_sub' value='gift_sub'>Gift Sub</option>
               }
+              {settings.isFollowerAlert && 
+              <option key='follower' value='follower'>Follower</option>
+              }
+              {settings.isCheerAlert && 
+              <option key='cheer' value='cheer'>Cheer</option>
+              }
+              {settings.isRaidAlert && 
+              <option key='raid' value='raid'>Raid</option>
+              }
             </select>
           </div>
         </div>}

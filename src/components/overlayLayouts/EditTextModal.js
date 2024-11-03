@@ -21,6 +21,9 @@ export const EditTextModal = ({ onClose, layer }) => {
     const [isForNewSubscriber, setIsForNewSubscriber] = useState(layer.conditions.isForNewSubscriber || false);
     const [isForResubscription, setIsForResubscription] = useState(layer.conditions.isForResubscription || false);
     const [isForGiftSub, setIsForGiftSub] = useState(layer.conditions.isForGiftSub || false);
+    const [isForFollower, setIsForFollower] = useState(layer.conditions.isForFollower || false);
+    const [isForCheer, setIsForCheer] = useState(layer.conditions.isForCheer || false);
+    const [isForRaid, setIsForRaid] = useState(layer.conditions.isForRaid || false);
     const [showSupportedVariables, setShowSupportedVariables] = useState(false);
 
     const handleSaveText = () => {
@@ -45,7 +48,10 @@ export const EditTextModal = ({ onClose, layer }) => {
             conditions: {
                 isForNewSubscriber,
                 isForResubscription,
-                isForGiftSub
+                isForGiftSub,
+                isForFollower,
+                isForCheer,
+                isForRaid
             }
         }
 
@@ -125,14 +131,20 @@ export const EditTextModal = ({ onClose, layer }) => {
                     {showSupportedVariables && <div className='supported-variables'>
                         <ul>
                             <span className='variables-list-heading'>Alerts and Slideshow</span>
-                            <li>{'{'}subscriber{'}'} - displays the subscriber's Twitch username</li>
-                            <li>{'{'}character{'}'} - displays name of the subscriber's SubSmash character</li>
+                            <li>{'{'}subscriber{'}'} - the subscriber's Twitch username</li>
+                            <li>{'{'}character{'}'} - name of the subscriber's SubSmash character</li>
                             <span className='variables-list-heading'>Alerts only</span>
-                            <li>{'{'}gifter{'}'} - displays the Twitch username of the viewer who gifted subs</li>
-                            <li>{'{'}amount{'}'} - displays the amount of subs gifted</li>
-                            <li>{'{'}months{'}'} - displays the number of months subscribed</li>
-                            <li>{'{'}message{'}'} - displays the resubscription message</li>
-                            <li>{'{'}tier{'}'} - displays the tier of the subscription</li>
+                            <li>{'{'}gifter{'}'} - the Twitch username of the viewer who gifted subs</li>
+                            <li>{'{'}giftAmount{'}'} - the amount of subs gifted</li>
+                            <li>{'{'}months{'}'} - the number of months subscribed</li>
+                            <li>{'{'}resubMessage{'}'} - the resubscription message</li>
+                            <li>{'{'}tier{'}'} - the tier of the subscription</li>
+                            <li>{'{'}follower{'}'} - the username of the new follower</li>
+                            <li>{'{'}cheerer{'}'} - the username of the viewer who cheered</li>
+                            <li>{'{'}cheerMessage{'}'} - the message sent with the cheer</li>
+                            <li>{'{'}cheerAmount{'}'} - the amount of bits cheered</li>
+                            <li>{'{'}raider{'}'} - the username of the raider</li>
+                            <li>{'{'}raidAmount{'}'} - the number of viewers with the raid</li>
                         </ul>
                     </div>}
                 </div>
@@ -238,6 +250,36 @@ export const EditTextModal = ({ onClose, layer }) => {
                                 checked={isForGiftSub}                         
                                 onChange={() => setIsForGiftSub(!isForGiftSub)} 
                             /> Gift Subscriptions
+                            <br />
+                        </>
+                    }   
+                    {settings.isFollowerAlert && 
+                        <>
+                            <input 
+                                type='checkbox' 
+                                checked={isForFollower}                         
+                                onChange={() => setIsForFollower(!isForFollower)} 
+                            /> New Followers
+                            <br />
+                        </>
+                    }   
+                    {settings.isCheerAlert && 
+                        <>
+                            <input 
+                                type='checkbox' 
+                                checked={isForCheer}                         
+                                onChange={() => setIsForCheer(!isForCheer)} 
+                            /> Cheers
+                            <br />
+                        </>
+                    }   
+                    {settings.isRaidAlert && 
+                        <>
+                            <input 
+                                type='checkbox' 
+                                checked={isForRaid}                         
+                                onChange={() => setIsForRaid(!isForRaid)} 
+                            /> Raids
                             <br />
                         </>
                     }   

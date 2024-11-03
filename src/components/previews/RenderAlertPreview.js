@@ -10,10 +10,16 @@ export const RenderAlertPreview = () => {
             subscriber: subscriberForTestAlert?.subscriberUsername,
             character: charName,
             gifter: subscriberForTestAlert?.gifterUsername,
-            amount: subscriberForTestAlert?.numberSubsGifted,
+            giftAmount: subscriberForTestAlert?.numberSubsGifted,
             months: subscriberForTestAlert?.monthsResubbed,
-            message: subscriberForTestAlert?.resubMessage,
-            tier: subscriberForTestAlert?.tier
+            resubMessage: subscriberForTestAlert?.resubMessage,
+            tier: subscriberForTestAlert?.tier,
+            follower: subscriberForTestAlert?.followerTwitchUsername || '',
+            cheerer: subscriberForTestAlert?.cheererTwitchUsername || '',
+            cheerMessage: subscriberForTestAlert?.cheerMessage || '',
+            cheerAmount: subscriberForTestAlert?.bits || '',
+            raider: subscriberForTestAlert?.raiderTwitchUsername || '',
+            raidAmount: subscriberForTestAlert?.viewers || ''
         }
     }, [subscriberForTestAlert, charName]);
 
@@ -29,41 +35,36 @@ export const RenderAlertPreview = () => {
             'new_subscriber': 'isForNewSubscriber',
             'resub': 'isForResubscription',
             'gift_sub': 'isForGiftSub',
+            'follower': 'isForFollower',
+            'cheer': 'isForCheer',
+            'raid': 'isForRaid'
         };
     
         const alertCondition = alertConditionMap[subscriberForTestAlert.type]; // Get the condition for the current alert
     
-        return layoutElements.map(el => {
-            // For text elements, check the corresponding condition dynamically
+        return layoutElements.filter(el => {
+            //filter out the elements that are not for the current alert type
+            if (alertCondition && !el.conditions[alertCondition]) {
+                return false;
+            }
+            return true;
+        }).        
+        map(el => {
+            // For text elements, replace the variables with the proper values
             if (el.type === 'text') {
-                if (alertCondition && !el.conditions[alertCondition]) {
-                    return {
-                        ...el,
-                        content: '' // Hide element if condition is false
-                    };
-                }
                 return {
                     ...el,
                     content: replaceTextPlaceholders(el.content, currentSubData)
                 };
             }
     
-            // For image elements, check the corresponding condition dynamically
-            if (el.type === 'image') {
-                if (alertCondition && !el.conditions[alertCondition]) {
-                    return {
-                        ...el,
-                        url: '' // Hide image if condition is false
-                    };
-                }
-                if (el.id === 'layout_placeholder___62efa17d') {
-                    return {
-                        ...el,
-                        url: imgSrc // Update the placeholder image URL
-                    };
-                }
-            }
-    
+            if (el.id === 'layout_placeholder___62efa17d') {
+                return {
+                    ...el,
+                    url: imgSrc // Update the placeholder image URL
+                };
+            }   
+
             return el; // Return unchanged elements
         });
     }, [currentSubData, layoutElements, imgSrc, subscriberForTestAlert]);
@@ -111,7 +112,16 @@ export const RenderAlertPreview = () => {
                 style={{ zIndex: element.zIndex }}
                 >
                 {element.type === 'image' && 
-                    <img src={element.url} alt={element.displayTitle} draggable='false' />
+                    <img 
+                    src={element.url} 
+                    alt={element.displayTitle} 
+                    draggable='false' 
+                    style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover'
+                      }}
+                    />
                 }
                 {element.type === 'text' && 
                 <div 
