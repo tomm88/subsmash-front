@@ -8,6 +8,7 @@ const NewSubscriberPayloadTester = () => {
     const [streamerDatabaseId, setStreamerDatabaseId] = useState(null)
     const [subscriberTwitchId, setSubscriberTwitchId] = useState('')
     const [subscriberTwitchUsername, setSubscriberTwitchUsername] = useState('');
+    const [isGift, setIsGift] = useState(false);
     const [tier, setTier] = useState('1000');
 
     const [loadingState, setLoadingState] = useState(false);
@@ -34,7 +35,7 @@ const NewSubscriberPayloadTester = () => {
             broadcaster_user_id: streamerTwitchId,
             broadcaster_user_name: streamerUsername,
             tier,
-            is_gift: false
+            is_gift: isGift
         };
 
         try {
@@ -78,6 +79,11 @@ const NewSubscriberPayloadTester = () => {
                 <option value="2000">2</option>
                 <option value="3000">3</option>
             </select>
+        </label>
+        <br />
+        <label>
+        <input type='checkbox' checked={isGift} onChange={() => setIsGift(!isGift)} />
+        Is Gift?
         </label>
         <br />
         <button onClick={handleClick} disabled={loadingState}>{loadingState ? 'loading...' : 'Test New Subscriber'}</button>
