@@ -42,11 +42,19 @@ export const LayoutProvider = ({ children }) => {
     const getLayouts = useCallback(async () => {
         try {
             const response = await axios.get(`${apiUrl}/db/getLayouts`, { withCredentials: true });
-            setLayouts(response.data.layouts);
-            setActiveSlideshowLayout(response.data.activeSlideshowLayout);
-            setActiveAlertsLayouts(response.data.activeAlertsLayouts);
+            const { data } = response;
+            setLayouts(data.layouts);
+            setActiveSlideshowLayout(data.activeSlideshowLayout);
+            setActiveAlertsLayouts(data.activeAlertsLayouts);
             if (Object.keys(selectedLayout).length === 0) {
-              handleSelectLayout(response.data.layouts[0])
+              let selected;
+              if (data.activeAlertsLayouts.length > 0) {
+                selected = data.layouts.find(l => l.id === data.activeAlertsLayouts[0])
+              }
+              if (data.activeSlideshowLayout && !selected) {
+                selected = data.layouts.find(l => l.id === data.activeSlideshowLayout)
+              }
+              handleSelectLayout(selected || data.layouts[0])
             }
             
             return response.data.layouts;
