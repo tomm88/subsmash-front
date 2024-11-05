@@ -24,10 +24,11 @@ export const editLayoutName = async (newLayoutName, id) => {
 
 export const deleteLayout = async (layoutId) => {
     try {
-        await axios.delete(`${apiUrl}/db/layouts/delete/${layoutId}`)
-        return
+        const deleteResponse = await axios.delete(`${apiUrl}/db/layouts/delete/${layoutId}`, {withCredentials: true})
+        return deleteResponse
     } catch (error) {
         console.error('Error deleting layout', error)
+        return error
     }
 }
 

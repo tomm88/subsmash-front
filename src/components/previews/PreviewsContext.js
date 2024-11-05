@@ -13,9 +13,10 @@ export const PreviewsProvider = ({ children }) => {
     const [alertTypeToTest, setAlertTypeToTest] = useState('new_subscriber')
     const [subscriberForTestAlert, setSubscriberForTestAlert] = useState(null);
     const [alertDuration, setAlertDuration] = useState(3);
-    const [alertSoundUrl, setAlertSoundUrl] = useState('')
+    const [alertSoundUrls, setAlertSoundUrls] = useState({})
     const [alertPreviewIsShowing, setAlertPreviewIsShowing] = useState(false);
     const [liveTesting, setLiveTesting] = useState(false);
+    const [backgroundColor, setBackgroundColor] = useState('#2a2a2a')
 
     const getLayouts = useCallback(async () => {
         try {
@@ -72,7 +73,7 @@ export const PreviewsProvider = ({ children }) => {
         if (layoutElements.length > 0) {
           const config = layoutElements.find(el => el.type === 'config');
           setAlertDuration(parseInt(config.duration) * 1000);
-          setAlertSoundUrl(config.soundUrl)
+          setAlertSoundUrls(config.soundUrls)
         }
       }, [layoutElements])
 
@@ -106,13 +107,15 @@ export const PreviewsProvider = ({ children }) => {
         subscriberForTestAlert,
         setSubscriberForTestAlert,
         alertDuration,
-        alertSoundUrl,
+        alertSoundUrls,
         alertPreviewIsShowing,
         setAlertPreviewIsShowing,
         liveTesting,
         setLiveTesting,
         charName, 
         imgSrc,
+        backgroundColor,
+        setBackgroundColor,
         apiUrl
       }
 

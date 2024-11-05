@@ -48,7 +48,12 @@ export const AlertsBrowserSource = () => {
 
         const filteredLayouts = allActiveLayouts.filter((layout) => {
             const config = layout.layout_data.find(el => el.type === 'config');
-            return config && config.conditions[alertCondition]
+            if (alertCondition === 'isNewSubscriberAlert' && alert.data.isGift){
+                return config && config.conditions['isNewSubscriberAlert'] && config.conditions['showNewSubAlertForGifted']
+            } else {
+                return config && config.conditions[alertCondition]
+            }
+
         });
 
         if (filteredLayouts.length > 0) {
@@ -122,7 +127,7 @@ export const AlertsBrowserSource = () => {
                 setChosenLayoutElements(layout.layout_data);
                 const config = layout.layout_data.find(el => el.type === 'config');
                 setAlertDuration(parseInt(config.duration) * 1000)
-                setAlertSoundUrl(config.soundUrl)
+                setAlertSoundUrl(config.soundUrls[alertQueue[0].type])
             }
             setCurrentAlert(alertQueue[0]);
             setAlertQueue((prevQueue) => prevQueue.slice(1));

@@ -19,7 +19,7 @@
 }
 
 .user-sounds-list {
-    list-style-type: none;
+    list-style-type: circle;
     padding: 0;
     margin: 0;
     max-height: 300px;
@@ -28,15 +28,49 @@
 
 .user-sounds-item {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
     justify-content: flex-start;
     padding: 10px 10px 10px 0px;
     border-top: 1px solid #333;
     border-bottom: 1px solid #333; /* Darker grey line between items */
-    cursor: pointer;
     transition: background-color 0.2s ease;
+    cursor: default;
 }
 
-.input-radio {
-    margin: 10px;
+.arrow-and-sound-name-container {
+    display: flex;
+    align-items: center;
+}
+
+.sound-name-and-play-button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sounds-panel-button {
+    cursor: pointer;
+}
+
+.sound-conditions-list {
+    list-style-type: none;
+}
+
+.active-sounds-container {
+    border: 1px solid #444;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.show-hide-active-sounds-button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.active-sounds-item {
+    padding: 5px;
+}
+
+.active-sound-title {
+    margin-left: 20px;
 }

@@ -117,7 +117,7 @@ export const LayoutBuilder = () => {
   
 
   return (
-    <div className='layout-builder-container' style={{backgroundColor: backgroundColor}}>
+    <div className='layout-builder-container' style={{backgroundColor}}>
       {filteredElements
       .filter((element) => element.type !== 'config')
       .map((element) => (

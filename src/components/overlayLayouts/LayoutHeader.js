@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { LayoutContext } from './LayoutContext'
 import '../../styles/overlayLayouts/layoutHeader.css'
 import { NewLayoutModal } from './NewLayoutModal';
@@ -8,6 +8,16 @@ export const LayoutHeader = () => {
     const { selectedLayout, handleSaveLayout, savingLayout, view, setView, settings, saveSuccess, backgroundColor, setBackgroundColor } = useContext(LayoutContext);
     const [creatingNewLayout, setCreatingNewLayout] = useState(false);
     const [editingName, setEditingName] = useState(false);
+
+    useEffect(() => {
+      let somethingisActive = false;
+      if (!somethingisActive && settings.isNewSubscriberAlert){setView("new_subscriber"); somethingisActive=true}
+      if (!somethingisActive && settings.isResubscribeAlert){setView("resub"); somethingisActive=true}
+      if (!somethingisActive && settings.isGiftSubAlert){setView("gift_sub"); somethingisActive=true}
+      if (!somethingisActive && settings.isFollowerAlert){setView("follower"); somethingisActive=true}
+      if (!somethingisActive && settings.isCheerAlert){setView("cheer"); somethingisActive=true}
+      if (!somethingisActive && settings.isRaidAlert){setView("raid"); somethingisActive=true}
+    }, [])
 
     const handleSelectFromDropdown = (e) => {
       setView(e.target.value)

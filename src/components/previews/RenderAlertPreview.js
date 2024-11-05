@@ -48,8 +48,7 @@ export const RenderAlertPreview = () => {
                 return false;
             }
             return true;
-        }).        
-        map(el => {
+        }).map(el => {
             // For text elements, replace the variables with the proper values
             if (el.type === 'text') {
                 return {
@@ -85,7 +84,7 @@ export const RenderAlertPreview = () => {
     })
 
     useEffect(() => {
-        if (subscriberForTestAlert.alertSoundUrl) {
+        if (subscriberForTestAlert.alertSoundUrl && subscriberForTestAlert.alertSoundUrl !== 'no sound') {
             const alertSound = new Audio(subscriberForTestAlert.alertSoundUrl);
             alertSound.play();
         }

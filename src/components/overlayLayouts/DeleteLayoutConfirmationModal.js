@@ -8,7 +8,13 @@ export const DeleteLayoutConfirmationModal = ({ setDeleteModalOpen }) => {
 
     const handleDeleteLayout = async () => {
         setDeleting(true);
-        await deleteLayout(selectedLayout.id);
+        const deleteResponse = await deleteLayout(selectedLayout.id);
+        if (deleteResponse.data.message === 'Error: Layout is active') {
+          alert("Layout is active. Please deactivate it before deleting");
+          setDeleting(false);
+          setDeleteModalOpen(false);
+          return;
+        }
         const refreshedLayouts = await refreshLayouts();
         handleSelectLayout(refreshedLayouts[0]);
         setDeleting(false);

@@ -21,6 +21,8 @@ export const LayoutSettings = () => {
         setShowSettings,
         isNewSubscriberAlert,
         setIsNewSubscriberAlert,
+        showNewSubAlertForGifted,
+        setShowNewSubAlertForGifted,
         isResubscribeAlert,
         setisResubscribeAlert,
         isGiftSubAlert,
@@ -70,13 +72,17 @@ export const LayoutSettings = () => {
 
         activeAlertsLayouts.forEach(id => {
             const layout = layouts.find(l => l.id === id)
-            const config = layout.layout_data.find(el => el.type === 'config');
-            if (config.conditions.isNewSubscriberAlert) newSubs.push(layout.layout_name);
-            if (config.conditions.isResubscribeAlert) resubs.push(layout.layout_name);
-            if (config.conditions.isGiftSubAlert) giftSubs.push(layout.layout_name);
-            if (config.conditions.isFollowerAlert) followers.push(layout.layout_name);
-            if (config.conditions.isCheerAlert) cheers.push(layout.layout_name);
-            if (config.conditions.isRaidAlert) raids.push(layout.layout_name);
+            if (layout) {
+                const config = layout.layout_data.find(el => el.type === 'config');
+                if (config) {
+                    if (config.conditions.isNewSubscriberAlert) newSubs.push(layout.layout_name);
+                    if (config.conditions.isResubscribeAlert) resubs.push(layout.layout_name);
+                    if (config.conditions.isGiftSubAlert) giftSubs.push(layout.layout_name);
+                    if (config.conditions.isFollowerAlert) followers.push(layout.layout_name);
+                    if (config.conditions.isCheerAlert) cheers.push(layout.layout_name);
+                    if (config.conditions.isRaidAlert) raids.push(layout.layout_name);
+                }
+            }
         });
 
         const slideshowLayout = layouts.find(layout => layout.id === activeSlideshowLayout);
@@ -129,6 +135,12 @@ export const LayoutSettings = () => {
         if (newVal && view === '') {
             setView('new_subscriber')
         }
+    }
+
+    const handleShowNewSubAlersForGiftSubsCheckBox = () => {
+        const newVal = !showNewSubAlertForGifted;
+        setShowNewSubAlertForGifted(newVal);
+        handleConditionUpdate('showNewSubAlertForGifted', newVal)
     }
 
     const handleReSubCheckBox = () => {
@@ -241,6 +253,14 @@ export const LayoutSettings = () => {
                         <div>
                             <input 
                                 type='checkbox' 
+                                checked={showNewSubAlertForGifted}
+                                onChange={handleShowNewSubAlersForGiftSubsCheckBox}
+                                disabled={!isNewSubscriberAlert}
+                                /> Show New Sub Alerts for Gift Subs
+                        </div>
+                        <div>
+                            <input 
+                                type='checkbox' 
                                 checked={isResubscribeAlert}
                                 onChange={handleReSubCheckBox}
                                 /> Resubscriptions
@@ -280,7 +300,6 @@ export const LayoutSettings = () => {
                 </>
             }
             <p onClick={() => setShowSettings(!showSettings)} className='hide-settings-text'>{showSettings ? 'Hide Layout Settings' : 'Show Layout Settings'}</p>
-            <br />
             <button className='show-hide-active-layouts-button' onClick={handleShowActiveLayouts}>{showActiveLayouts ? 'Hide Active Layouts' : 'Show Active Layouts'}</button>
             {showActiveLayouts && 
             <>

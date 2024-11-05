@@ -92,7 +92,7 @@ export const RenderAlert = ({ currentAlert, layoutElements, alertSoundUrl }) => 
 
     if (!currentAlert) return null;
 
-    if (alertSoundUrl) {
+    if (alertSoundUrl && alertSoundUrl !== 'no sound') {
         const alertSound = new Audio(alertSoundUrl);
         alertSound.play();
     }

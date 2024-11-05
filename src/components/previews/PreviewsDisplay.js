@@ -5,10 +5,10 @@ import { RenderAlertPreview } from './RenderAlertPreview'
 import { PreviewsContext } from './PreviewsContext'
 
 export const PreviewsDisplay = () => {
-  const { selectedLayout, subscriberForTestAlert } = useContext(PreviewsContext);
+  const { selectedLayout, subscriberForTestAlert, backgroundColor } = useContext(PreviewsContext);
 
   return (
-    <div className='preview-window'>
+    <div className='preview-window' style={{backgroundColor}}>
       {selectedLayout.layout_type === 'slideshow' && <RenderSlideshowPreview />}
       {selectedLayout.layout_type === 'alerts' && subscriberForTestAlert && <RenderAlertPreview />}
     </div>

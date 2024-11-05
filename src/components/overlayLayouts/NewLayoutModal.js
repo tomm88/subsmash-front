@@ -16,7 +16,7 @@ export const NewLayoutModal = ({ setCreatingNewLayout }) => {
     const [isCheerAlert, setIsCheerAlert] = useState(true);
     const [isRaidAlert, setIsRaidAlert] = useState(true);
 
-    const { layouts, handleSelectLayout, refreshLayouts } = useContext(LayoutContext)
+    const { layouts, handleSelectLayout, refreshLayouts } = useContext(LayoutContext);
 
     const handleCreateLayout = async () => {
         if (!layoutName) {
@@ -31,14 +31,23 @@ export const NewLayoutModal = ({ setCreatingNewLayout }) => {
                 type: 'config',
                 conditions: {
                     isNewSubscriberAlert,
+                    showNewSubAlertForGifted: false,
                     isResubscribeAlert,
                     isGiftSubAlert,
                     isFollowerAlert,
                     isCheerAlert,
                     isRaidAlert
                 },
+                soundUrls: {
+                    isNewSubscriberAlert: 'no sound',
+                    isResubscribeAlert: 'no sound',
+                    isGiftSubAlert: 'no sound',
+                    isFollowerAlert: 'no sound',
+                    isCheerAlert: 'no sound',
+                    isRaidAlert: 'no sound'
+                },
                 duration: 10,
-                soundUrl: ''
+
             })
         }
 

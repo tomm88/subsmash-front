@@ -19,6 +19,7 @@ export const LayoutProvider = ({ children }) => {
     const [presetFonts, setPresetFonts] = useState([]);
     const [showSettings, setShowSettings] = useState(true);
     const [isNewSubscriberAlert, setIsNewSubscriberAlert] = useState(false);
+    const [showNewSubAlertForGifted, setShowNewSubAlertForGifted] = useState(false);
     const [isResubscribeAlert, setisResubscribeAlert] = useState(false);
     const [isGiftSubAlert, setIsGiftSubAlert] = useState(false);
     const [isFollowerAlert, setIsFollowerAlert] = useState(false);
@@ -32,7 +33,7 @@ export const LayoutProvider = ({ children }) => {
     const [userSounds, setUserSounds] = useState([]);
     const [presetSounds, setPresetSounds] = useState([]);
     const [showSoundsPanel, setShowSoundsPanel] = useState(true);
-    const [selectedSound, setSelectedSound] = useState(null);
+    const [selectedSounds, setSelectedSounds] = useState(null);
     const [saveSuccess, setSaveSuccess] = useState(false);
     const [backgroundColor, setBackgroundColor] = useState('#2a2a2a')
 
@@ -41,7 +42,6 @@ export const LayoutProvider = ({ children }) => {
     const getLayouts = useCallback(async () => {
         try {
             const response = await axios.get(`${apiUrl}/db/getLayouts`, { withCredentials: true });
-            console.log(response.data.layouts)
             setLayouts(response.data.layouts);
             setActiveSlideshowLayout(response.data.activeSlideshowLayout);
             setActiveAlertsLayouts(response.data.activeAlertsLayouts);
@@ -89,9 +89,10 @@ export const LayoutProvider = ({ children }) => {
         if (element)  {
         if (selectedLayout.layout_type === 'alerts'){
             setIsNewSubscriberAlert(element.conditions.isNewSubscriberAlert || false);
+            setShowNewSubAlertForGifted(element.conditions.showNewSubAlertForGifted|| false);
             setisResubscribeAlert(element.conditions.isResubscribeAlert || false);
             setIsGiftSubAlert(element.conditions.isGiftSubAlert || false);
-            setSelectedSound(element.soundUrl || null);
+            setSelectedSounds(element.soundUrls || null);
             setIsFollowerAlert(element.conditions.isFollowerAlert || false);
             setIsCheerAlert(element.conditions.isCheerAlert || false);
             setIsRaidAlert(element.conditions.isRaidAlert || false);
@@ -167,6 +168,8 @@ export const LayoutProvider = ({ children }) => {
       setShowSettings,
       isNewSubscriberAlert,
       setIsNewSubscriberAlert,
+      showNewSubAlertForGifted,
+      setShowNewSubAlertForGifted,
       isResubscribeAlert,
       setisResubscribeAlert,
       isGiftSubAlert,
@@ -218,8 +221,8 @@ export const LayoutProvider = ({ children }) => {
         setPresetSounds,
         showSoundsPanel,
         setShowSoundsPanel,
-        selectedSound,
-        setSelectedSound,
+        selectedSounds,
+        setSelectedSounds,
         saveSuccess,
         backgroundColor,
         setBackgroundColor
