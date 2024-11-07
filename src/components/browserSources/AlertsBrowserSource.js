@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { useParams } from "react-router-dom";
 import axios from 'axios'
 import { RenderAlert } from "./RenderAlert";
@@ -17,6 +17,7 @@ export const AlertsBrowserSource = () => {
     const websocketUrl = process.env.REACT_APP_WS_URL;
     const apiUrl = process.env.REACT_APP_API_URL;
 
+    const audioRef = useRef();
 
     const getLayouts = useCallback( async () => {
         const activeLayouts = await getActiveAlertsLayouts(hash);
@@ -135,17 +136,25 @@ export const AlertsBrowserSource = () => {
         }
 
         if (currentAlert) {
+            if (alertSoundUrl && alertSoundUrl !== 'no sound') {
+                audioRef.current = new Audio(alertSoundUrl);
+                audioRef.current.play();
+            }
             const timer = setTimeout(() => {
+                if (audioRef.current !== null) {
+                    audioRef.current.pause();
+                    audioRef.current = null;
+                }
                 setCurrentAlert(null);
             }, alertDuration);
 
             return () => {
+                audioRef.current = null;
                 clearTimeout(timer); 
                 setChosenLayoutElements([]);
             }
         }
     }, [alertQueue, currentAlert, allActiveLayouts, chooseLayout, alertDuration, alertSoundUrl])
-
 
     return (
         <>

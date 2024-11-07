@@ -1,9 +1,11 @@
-import React, { useContext, useEffect, useMemo } from "react";
+import React, { useContext, useEffect, useMemo, useRef } from "react";
 import { Rnd } from "react-rnd";
 import { PreviewsContext } from "./PreviewsContext";
 
 export const RenderAlertPreview = () => {
     const { subscriberForTestAlert, setSubscriberForTestAlert, layoutElements, setAlertPreviewIsShowing, charName, imgSrc } = useContext(PreviewsContext);
+
+    const audioRef = useRef(null);
 
     const currentSubData = useMemo(() => {
         return {
@@ -72,23 +74,26 @@ export const RenderAlertPreview = () => {
     useEffect(() => {
         if (subscriberForTestAlert) {
             setAlertPreviewIsShowing(true)
+            if (subscriberForTestAlert.alertSoundUrl && subscriberForTestAlert.alertSoundUrl !== 'no sound') {
+                console.log('how many?')
+                audioRef.current = new Audio(subscriberForTestAlert.alertSoundUrl);
+                audioRef.current.play();
+            }
             const timer = setTimeout(() => {
+                if (audioRef.current !== null) {
+                    audioRef.current.pause();
+                    audioRef.current = null;
+                }
                 setSubscriberForTestAlert(null);
             }, subscriberForTestAlert.alertDuration);
 
             return () => {
+                audioRef.current = null;
                 clearTimeout(timer); 
                 setAlertPreviewIsShowing(false)
             }
         }
-    })
-
-    useEffect(() => {
-        if (subscriberForTestAlert.alertSoundUrl && subscriberForTestAlert.alertSoundUrl !== 'no sound') {
-            const alertSound = new Audio(subscriberForTestAlert.alertSoundUrl);
-            alertSound.play();
-        }
-    }, [subscriberForTestAlert.alertSoundUrl])
+    }, [setAlertPreviewIsShowing, setSubscriberForTestAlert, subscriberForTestAlert])
 
     if (!subscriberForTestAlert) return null;
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from "react";
 import { Rnd } from "react-rnd";
 
-export const RenderAlert = ({ currentAlert, layoutElements, alertSoundUrl }) => {
+export const RenderAlert = ({ currentAlert, layoutElements }) => {
 
     useEffect(() => {
         layoutElements.forEach(element => {
@@ -91,11 +91,6 @@ export const RenderAlert = ({ currentAlert, layoutElements, alertSoundUrl }) => 
     
 
     if (!currentAlert) return null;
-
-    if (alertSoundUrl && alertSoundUrl !== 'no sound') {
-        const alertSound = new Audio(alertSoundUrl);
-        alertSound.play();
-    }
 
     return (
         <>
