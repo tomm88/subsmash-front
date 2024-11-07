@@ -74,3 +74,9 @@
 .active-sound-title {
     margin-left: 20px;
 }
+
+.delete-button-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}

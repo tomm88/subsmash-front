@@ -10,7 +10,7 @@ import playStop from '../../assets/icons/playStop.svg';
 import '../../styles/overlayLayouts/userSounds.css'
 
 export const UserSounds = () => {
-    const { userSounds, setUserSounds, presetSounds, setPresetSounds, apiUrl, showSoundsPanel, setShowSoundsPanel, setLayoutElements, layoutElements, selectedSounds, setSelectedSounds } = useContext(LayoutContext);
+    const { userSounds, setUserSounds, presetSounds, setPresetSounds, apiUrl, showSoundsPanel, setShowSoundsPanel, setLayoutElements, layoutElements, selectedSounds, setSelectedSounds, layouts } = useContext(LayoutContext);
     const [uploadingSound, setUploadingSound] = useState(false);
     const [showSoundConditions, setShowSoundConditions] = useState({});
     const [soundPlaying, setSoundPlaying] = useState('');
@@ -175,6 +175,36 @@ export const UserSounds = () => {
 
         return 'no sound'
     }
+
+    const handleDeleteSound = async (sound) => {
+        const currentConfig = layoutElements.find(el => el.type === 'config');
+        const {soundUrls} = currentConfig;
+        if (Object.values(soundUrls).includes(sound.url)) {
+            alert("Cannot delete sound as it is being used in the currently selected layout");
+            return;
+        }
+
+        for (const l of layouts) {
+            if (l.layout_type === 'alerts') {
+                const config = l.layout_data.find(el => el.type === 'config');
+                const {soundUrls} = config;
+                if (Object.values(soundUrls).includes(sound.url)) {
+                    alert("Cannot delete sound as it is currently being used in another layout")
+                    return;
+                }
+            }
+        }
+
+        try {
+            const response = await axios.delete(`${apiUrl}/aws/deleteUserSound/${sound.title}`, { withCredentials: true });
+            if (response.data.message === 'Sound deleted successfully') {
+                setUserSounds(userSounds.filter(s => s.url !== sound.url))
+            }
+            return response;
+        } catch (error) {
+            console.error('Could not delete sound', error)
+        }
+    }
         
 
   return (
@@ -225,6 +255,9 @@ export const UserSounds = () => {
                                         </li>
                                     ))}
                                 </ul>
+                                <div className='delete-button-container'>
+                                    <button className='delete-button' onClick={() => handleDeleteSound(sound)}>Delete</button>
+                                </div>
                             </div>
                             }
                         </li>
