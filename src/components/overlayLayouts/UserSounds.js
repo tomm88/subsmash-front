@@ -189,7 +189,7 @@ export const UserSounds = () => {
                 const config = l.layout_data.find(el => el.type === 'config');
                 const {soundUrls} = config;
                 if (Object.values(soundUrls).includes(sound.url)) {
-                    alert("Cannot delete sound as it is currently being used in another layout")
+                    alert("Cannot delete sound while it is being used in a layout")
                     return;
                 }
             }
@@ -340,7 +340,7 @@ export const UserSounds = () => {
         }
         <p className='toggle-hide' onClick={handleToggleShowPanel}>{showSoundsPanel ? 'Hide sounds panel' : 'Show sounds panel'}</p>
         <button className='show-hide-active-sounds-button' onClick={() => setShowActiveSounds(!showActiveSounds)}>
-            {showActiveSounds ? 'Hide Active Sounds' : 'Show Active Sounds'}
+            {showActiveSounds ? "Hide This Layout's Sounds" : "Show This Layout's Sounds"}
         </button>
         {showActiveSounds && 
             <div className='active-sounds-container'>
