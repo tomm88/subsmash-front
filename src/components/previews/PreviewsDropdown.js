@@ -1,18 +1,15 @@
 import React, { useCallback, useContext, useEffect } from 'react'
-import { useLocation } from 'react-router-dom';
 import { PreviewsContext } from './PreviewsContext';
 
 export const PreviewsDropdown = () => {
 
     const { layouts, handleSelectLayout, selectedLayout, alertPreviewIsShowing } = useContext(PreviewsContext)
 
-    const location = useLocation();
-    const searchParams = new URLSearchParams(location.search);
-    const urlLayout = JSON.parse(searchParams.get('layout'));
+    const initialLayout = JSON.parse(sessionStorage.getItem('selectedLayout'));
 
     const setInitialLayout = useCallback(() => {
-        handleSelectLayout(urlLayout);
-    }, [handleSelectLayout, urlLayout])
+        handleSelectLayout(initialLayout);
+    }, [handleSelectLayout, initialLayout])
 
     useEffect(() => {
         if (Object.keys(selectedLayout).length === 0) {
