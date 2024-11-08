@@ -39,6 +39,10 @@ export const ComingSoon = () => {
         return () => clearInterval(imageChangeInterval)
     }, [natureImages.length])
 
+    const handleDiscordInvite = () => {
+        window.open("https://discord.gg/DmpPFjsgZQ", "_blank");
+    }
+
     return (
         <div className='home-page'>
             <div className='hero'>
@@ -46,7 +50,7 @@ export const ComingSoon = () => {
               <br />
               <p>To become one, join the Discord</p>
               <br />
-              <button>Discord</button>
+              <button onClick={handleDiscordInvite}>Discord</button>
               <br />
               <a href='/'>Return Home</a>
             </div>
