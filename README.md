@@ -23,6 +23,7 @@ If you have subscribers, you will see them in a table on the dashboard:
 ![image](https://github.com/user-attachments/assets/2010d3bd-0758-423d-b221-a54f2748b290)
 
 The OBS Browser Source urls can be added to a scene in OBS as browser sources and placed as desired. By default, the slideshow and alerts will have one of SubSmash's preset layouts.
+
 ![image](https://github.com/user-attachments/assets/98e7ef47-dd83-4bf2-84c8-57d9b9213ea9)
 
 Go to "My Prompts" or "My Layouts" and start building your own randomizable prompt or slideshow/alert layout using the drag-and-drop UIs.
